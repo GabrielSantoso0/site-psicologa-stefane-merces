@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sincronia | Brand Book Oficial 2.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #00E5C8; --primary-glow: rgba(0,229,200,0.3);
+  --blue: #00B4FF; --bg: #0A0A0A;
+  --s1: #111111; --s2: #1A1A1A;
+  --text: #FFFFFF; --muted: #888888;
+  --border: rgba(255,255,255,0.07);
+  --sans: 'Plus Jakarta Sans', sans-serif;
+  --mono: 'Geist Mono', monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:#1c1c1c;color:var(--text);-webkit-font-smoothing:antialiased}
+.print-btn{position:fixed;top:20px;right:20px;background:var(--primary);color:#000;border:none;padding:12px 24px;font-family:var(--sans);font-weight:700;font-size:0.9rem;border-radius:8px;cursor:pointer;z-index:1000;box-shadow:0 4px 20px var(--primary-glow);transition:all .3s}
+.print-btn:hover{transform:translateY(-2px);box-shadow:0 6px 30px var(--primary-glow)}
+/* PAGE */
+.page{width:210mm;min-height:297mm;margin:12mm auto;background:var(--bg);padding:20mm;position:relative;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.7)}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+.content{position:relative;z-index:1}
+.glow-orb{position:absolute;top:-20%;left:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,200,0.06) 0%,transparent 60%);border-radius:50%;pointer-events:none;z-index:0}
+/* TYPE */
+h1{font-size:3.5rem;font-weight:800;letter-spacing:-0.03em;background:linear-gradient(135deg,#fff 0%,var(--primary) 60%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:1rem}
+h2{font-size:1.8rem;font-weight:700;color:var(--primary);margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid rgba(0,229,200,0.2);display:flex;align-items:center;gap:10px;letter-spacing:-0.01em}
+h3{font-size:1.1rem;font-weight:700;color:var(--text);margin:1.5rem 0 .75rem}
+p{color:var(--muted);font-size:.95rem;line-height:1.75;margin-bottom:1rem}
+strong{color:var(--text)}
+ul{padding-left:1.2rem;margin-bottom:1rem}
+li{color:var(--muted);margin-bottom:.4rem;font-size:.92rem;line-height:1.6}
+li strong{color:var(--primary)}
+blockquote{border-left:3px solid var(--primary);background:var(--s1);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0;font-style:italic;color:#ccc;font-size:.95rem}
+.badge{display:inline-block;font-family:var(--mono);font-size:.75rem;background:var(--primary);color:#000;padding:3px 10px;border-radius:4px;font-weight:600;margin-bottom:1.2rem;letter-spacing:.05em}
+.tag{display:inline-block;font-family:var(--mono);font-size:.72rem;border:1px solid rgba(0,229,200,0.4);color:var(--primary);padding:2px 8px;border-radius:4px;margin-right:6px;margin-bottom:6px}
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--border);margin:2rem 0}
+/* FOOTER */
+.pfoot{position:absolute;bottom:18mm;left:20mm;right:20mm;font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,0.2);display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.06);padding-top:.75rem;z-index:2}
+/* IMAGE GRID */
+.img-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+.img-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin:1.5rem 0}
+.img-full{width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+.img-cap{font-family:var(--mono);font-size:.7rem;color:var(--muted);text-align:center;margin-top:.4rem}
+.img-wrap{display:flex;flex-direction:column}
+/* PALETTE */
+.palette{display:flex;gap:.75rem;margin:1.25rem 0;flex-wrap:wrap}
+.swatch{border-radius:8px;overflow:hidden;border:1px solid var(--border);min-width:75px}
+.swatch-box{height:70px}
+.swatch-info{background:var(--s1);padding:6px 8px;font-family:var(--mono);font-size:.65rem;color:var(--muted);line-height:1.4}
+/* TOKENS */
+.token-table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:.85rem}
+.token-table th{text-align:left;color:var(--primary);font-family:var(--mono);font-size:.75rem;padding:6px 10px;border-bottom:1px solid var(--border)}
+.token-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--muted);font-family:var(--mono);font-size:.78rem}
+.token-table td:first-child{color:var(--text)}
+/* LOGO RULES */
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.25rem 0}
+.rule-card{background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+.rule-card.ok{border-color:rgba(0,229,200,0.25)}
+.rule-card.no{border-color:rgba(255,60,60,0.25)}
+.rule-label{font-family:var(--mono);font-size:.72rem;margin-top:.5rem}
+.rule-label.ok{color:var(--primary)}
+.rule-label.no{color:#ff4444}
+/* SOCIAL GRID */
+.social-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin:1.5rem 0}
+/* UI MOCK */
+.ui-section{display:grid;grid-template-columns:2fr 1fr;gap:1rem;margin:1.5rem 0}
+/* PRINT */
+@media print{
+  body{background:var(--bg);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .page{margin:0;box-shadow:none;width:auto;min-height:100vh}
+  .print-btn{display:none}
+}
+</style>
+</head>
+<body>
+<button onclick="window.print()" class="print-btn">⬇ Salvar PDF</button>
+
+<!-- ===================== CAPA ===================== -->
+<div class="page">
+  <div class="glow-orb"></div><div class="grid-bg"></div>
+  <div class="content" style="display:flex;flex-direction:column;justify-content:space-between;min-height:257mm">
+    <div>
+      <span class="badge">SINCRONIA // BRAND BOOK 1.0 // CONFIDENCIAL</span>
+      <div style="margin:2rem 0 1.5rem">
+        <img src="workshop/Vector.png" alt="Sincronia" style="height:72px;filter:drop-shadow(0 0 16px rgba(0,229,200,0.5))">
+      </div>
+      <h1>Brand Book</h1>
+      <p style="font-size:1.25rem;color:#ccc;max-width:520px;line-height:1.6">O sistema completo de identidade, linguagem e expressão visual da Sincronia.</p>
+      <div style="margin-top:1.5rem">
+        <span class="tag">Identidade Visual</span>
+        <span class="tag">Design System</span>
+        <span class="tag">Social Media</span>
+        <span class="tag">UI/UX Preview</span>
+        <span class="tag">Tom de Voz</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div>
+        <p style="font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:0">Branding & Automação Premium</p>
+        <p style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,0.2);margin:4px 0 0">Versão 1.0 · 2026</p>
+      </div>
+      <div style="font-family:var(--mono);font-size:.75rem;color:rgba(255,255,255,0.15);text-align:right">Design Chief × Brand Chief<br>Design Squad × Brand Squad</div>
+    </div>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>Capa</span></div>
+</div>
+
+<!-- ===================== CAP 01: IDENTIDADE ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">01 — IDENTIDADE DE MARCA</span>
+    <h1 style="font-size:2.5rem">A Engenharia da Marca</h1>
+    <p>Framework de <strong>Jean-Noël Kapferer</strong> — O Prisma de Identidade mapeia o DNA inquebrável da Sincronia como marca premium.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.5rem 0">
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">FÍSICO</p>
+        <p style="margin:0;font-size:.88rem">Visual tech-driven. Abyssal Black, acentos Cyan. Símbolo octogonal de precisão. Tipografia geométrica de autoridade.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">PERSONALIDADE</p>
+        <p style="margin:0;font-size:.88rem">O Mago Tecnológico. Visionário, direto, sofisticado. Não usa jargão vazio — entrega resultados mensuráveis.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">CULTURA</p>
+        <p style="margin:0;font-size:.88rem">Transformação Absoluta. O trabalho manual hoje é ineficiência. A eficiência é a nova estética.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">RELAÇÃO</p>
+        <p style="margin:0;font-size:.88rem">Parceiro estratégico. Peer-to-peer. A Sincronia não recebe ordens — prescreve o melhor caminho.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">REFLEXO</p>
+        <p style="margin:0;font-size:.88rem">Líderes de negócios do futuro. Empresários que escalam sem atrito.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem">
+        <p style="font-family:var(--mono);font-size:.75rem;color:var(--primary);margin-bottom:.5rem">AUTO-IMAGEM DO CLIENTE</p>
+        <p style="margin:0;font-size:.88rem">"Tenho controle absoluto. Minha operação roda autônoma e lucrativa."</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <h2>Only-ness Statement</h2>
+    <blockquote>A Sincronia é a <strong>ÚNICA</strong> consultoria estrutural de negócios <strong>QUE</strong> une a profundidade humana do Branding com a precisão mecânica da Inteligência Artificial para gerar percepção premium de valor e escala contínua.</blockquote>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>01</span></div>
+</div>
+
+<!-- ===================== CAP 02: LOGO ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">02 — ASSINATURA VISUAL</span>
+    <h1 style="font-size:2.5rem">O Logotipo</h1>
+    <p>O símbolo é um <strong>anel octogonal segmentado</strong> — 8 formas de precisão formando um sistema unificado. Ciano nos vértices, branco nos planos principais. Representa a Sincronia dos pontos de contato de um negócio.</p>
+
+    <div class="img-2" style="margin:1.5rem 0">
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_logo_dark_bg_1774916733856.png" alt="Logo fundo escuro" style="min-height:160px;object-fit:cover">
+        <p class="img-cap">↑ Versão principal — fundo escuro</p>
+      </div>
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_logo_light_bg_1774916748805.png" alt="Logo fundo claro" style="min-height:160px;object-fit:cover">
+        <p class="img-cap">↑ Versão alternativa — fundo claro</p>
+      </div>
+    </div>
+
+    <h3>Regras de Uso</h3>
+    <div class="rule-grid">
+      <div class="rule-card ok">
+        <p style="font-size:.82rem;color:#ccc;margin:0">✔ Use sempre com espaço de proteção equivalente à altura do símbolo em todos os lados.</p>
+        <p class="rule-label ok">USO CORRETO</p>
+      </div>
+      <div class="rule-card ok">
+        <p style="font-size:.82rem;color:#ccc;margin:0">✔ Em fundos coloridos, use a versão monocromática branca ou preta conforme contraste.</p>
+        <p class="rule-label ok">USO CORRETO</p>
+      </div>
+      <div class="rule-card no">
+        <p style="font-size:.82rem;color:#ccc;margin:0">✗ Nunca distorça ou altere as proporções do símbolo.</p>
+        <p class="rule-label no">PROIBIDO</p>
+      </div>
+      <div class="rule-card no">
+        <p style="font-size:.82rem;color:#ccc;margin:0">✗ Não aplique sobre fundos com pouco contraste ou em fotografia sem overlay.</p>
+        <p class="rule-label no">PROIBIDO</p>
+      </div>
+    </div>
+
+    <h3>Tamanho Mínimo</h3>
+    <p>Símbolo isolado: <strong>24px</strong> digital / <strong>8mm</strong> impresso. Assinatura horizontal completa: <strong>120px</strong> digital / <strong>35mm</strong> impresso.</p>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>02</span></div>
+</div>
+
+<!-- ===================== CAP 03: DESIGN SYSTEM ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">03 — DESIGN SYSTEM</span>
+    <h1 style="font-size:2.5rem">Tokens e Sistema</h1>
+    <p>Metodologia <strong>Brad Frost (Atomic Design)</strong> — Construímos sistemas, não apenas telas. Os tokens são os átomos subatômicos que garantem consistência em toda a expressão visual da Sincronia.</p>
+
+    <h3>Paleta de Cores</h3>
+    <div class="palette">
+      <div class="swatch"><div class="swatch-box" style="background:#0A0A0A"></div><div class="swatch-info"><strong style="color:#fff">#0A0A0A</strong><br>Abyssal Black<br>Fundo principal</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#111111"></div><div class="swatch-info"><strong style="color:#fff">#111111</strong><br>Surface 1<br>Cards e painéis</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#1A1A1A"></div><div class="swatch-info"><strong style="color:#fff">#1A1A1A</strong><br>Surface 2<br>Hover states</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#00E5C8"></div><div class="swatch-info"><strong style="color:#000">#00E5C8</strong><br>Cyber Cyan<br>Primária / CTA</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#00B4FF"></div><div class="swatch-info"><strong style="color:#000">#00B4FF</strong><br>Data Blue<br>Secundária</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#FFFFFF"></div><div class="swatch-info"><strong style="color:#000">#FFFFFF</strong><br>Text Main<br>Títulos</div></div>
+      <div class="swatch"><div class="swatch-box" style="background:#888888"></div><div class="swatch-info"><strong style="color:#fff">#888888</strong><br>Text Muted<br>Corpo / labels</div></div>
+    </div>
+
+    <h3>Tipografia</h3>
+    <table class="token-table">
+      <tr><th>Papel</th><th>Família</th><th>Peso</th><th>Uso</th></tr>
+      <tr><td>Display / H1</td><td>Plus Jakarta Sans</td><td>800</td><td>Títulos impactantes, capas</td></tr>
+      <tr><td>Headings H2–H4</td><td>Plus Jakarta Sans</td><td>700</td><td>Seções e subseções</td></tr>
+      <tr><td>Corpo de texto</td><td>Plus Jakarta Sans</td><td>400</td><td>Parágrafos e descrições</td></tr>
+      <tr><td>Dados / Código</td><td>Geist Mono</td><td>400/600</td><td>Labels, badges, métricas, terminal</td></tr>
+    </table>
+
+    <h3>Espaçamento e Forma</h3>
+    <p><strong>Grid base:</strong> 8px · <strong>Border-radius:</strong> 6–16px (cards) / 100px (pills) · <strong>Bordas:</strong> 1px solid rgba(255,255,255,0.07) · <strong>Transições:</strong> cubic-bezier(0.25, 0.8, 0.25, 1) 0.4s</p>
+
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-top:1.25rem;font-family:var(--mono);font-size:.78rem;color:#888;line-height:1.8">
+      <span style="color:#ff7b72">--primary:</span> <span style="color:var(--primary)">#00E5C8</span>;&nbsp;&nbsp;
+      <span style="color:#ff7b72">--bg-main:</span> <span style="color:#a5d6ff">#0A0A0A</span>;&nbsp;&nbsp;
+      <span style="color:#ff7b72">--font-sans:</span> <span style="color:#d2a8ff">'Plus Jakarta Sans'</span>;&nbsp;&nbsp;
+      <span style="color:#ff7b72">--font-mono:</span> <span style="color:#d2a8ff">'Geist Mono'</span>;
+    </div>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>03</span></div>
+</div>
+
+<!-- ===================== CAP 04: SOCIAL MEDIA ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">04 — SOCIAL MEDIA</span>
+    <h1 style="font-size:2.5rem">Presença Digital</h1>
+    <p><strong>Visual Generator (Design Squad)</strong> — Os posts da Sincronia seguem 3 grandes arquétipos de conteúdo, cada um com dimensões e intenção específica. Nenhum post usa cores vibrantes concorrentes. O fundo é sempre escuro.</p>
+
+    <div class="social-grid">
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_post_authority_1774916760611.png" alt="Post autoridade" style="aspect-ratio:1/1;object-fit:cover">
+        <p class="img-cap">Post de Autoridade · 1:1<br>Frases de posicionamento e liderança</p>
+      </div>
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_post_processos_1774916772067.png" alt="Post processo" style="aspect-ratio:4/5;object-fit:cover">
+        <p class="img-cap">Post de Processo · 4:5<br>Metodologia e resultado do cliente</p>
+      </div>
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_story_cover_1774916783636.png" alt="Story/Capa" style="aspect-ratio:9/16;object-fit:cover">
+        <p class="img-cap">Story / Capa · 9:16<br>Lançamentos e propostas premium</p>
+      </div>
+    </div>
+
+    <h3>Regras de Conteúdo Visual</h3>
+    <ul>
+      <li><strong>Sempre escuro:</strong> Fundo preto ou muito escuro (#0A–#1A). Nenhuma exceção.</li>
+      <li><strong>Uma cor de acento:</strong> Use apenas Cyan OR Blue por post. Nunca os dois com mesmo peso.</li>
+      <li><strong>Tipografia limpa:</strong> Máx. 2 estilos por peça. Body em Plus Jakarta Sans, dados em Geist Mono.</li>
+      <li><strong>Logo sempre presente:</strong> Posição inferior esquerda ou superior direita. Nunca centralizado por cima do texto.</li>
+      <li><strong>Sem stock photos:</strong> Use ilustrações abstratas, capturas de UI real ou renders 3D alinhados ao universo tech.</li>
+    </ul>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>04</span></div>
+</div>
+
+<!-- ===================== CAP 05: UI PREVIEW ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">05 — UI / PRODUTO DIGITAL</span>
+    <h1 style="font-size:2.5rem">Previsão de Interface</h1>
+    <p><strong>UX Designer × Visual Generator (Design Squad)</strong> — A Sincronia terá uma plataforma de gestão de automações para seus clientes. As interfaces devem expressar a mesma sofisticação do Brand Book.</p>
+
+    <div class="ui-section">
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_ui_dashboard_1774916795331.png" alt="Dashboard desktop">
+        <p class="img-cap">Dashboard Web · Painel de Automações Ativas</p>
+      </div>
+      <div class="img-wrap">
+        <img class="img-full" src="C:\Users\GABRIEL\.gemini\antigravity\brain\e84555c4-6e59-4751-943b-5ed1a8d7a04e\sincronia_ui_mobile_1774916806617.png" alt="Mobile">
+        <p class="img-cap">App Mobile · Status do Sistema</p>
+      </div>
+    </div>
+
+    <h3>Princípios de Interface (UX Designer)</h3>
+    <ul>
+      <li><strong>Dark mode exclusivo:</strong> A UI da Sincronia não tem modo claro. O dark mode não é estética — é posicionamento.</li>
+      <li><strong>Dados como protagonistas:</strong> Métricas, porcentagens e status devem ser a primeira coisa que o olho encontra.</li>
+      <li><strong>Glassmorphism moderado:</strong> Painéis com fundo semi-transparente + borda sutil. Não exagerar.</li>
+      <li><strong>Micro-animações funcionais:</strong> Apenas onde reforçam o estado do sistema. Transitions 0.4s ease-out.</li>
+      <li><strong>Acessibilidade mínima WCAG AA:</strong> Contraste de texto ≥ 4.5:1. Focus ring visível em todos os inputs.</li>
+    </ul>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>05</span></div>
+</div>
+
+<!-- ===================== CAP 06: NARRATIVA E CULTURA ===================== -->
+<div class="page">
+  <div class="grid-bg"></div>
+  <div class="content">
+    <span class="badge">06 — NARRATIVA & CULTURA</span>
+    <h1 style="font-size:2.5rem">Tom e Comportamento</h1>
+
+    <h3>O Roteiro StoryBrand (Donald Miller)</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0">
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1rem">
+        <p style="font-family:var(--mono);font-size:.7rem;color:var(--primary);margin-bottom:.4rem">O HERÓI</p>
+        <p style="font-size:.85rem;margin:0">CEO e líderes de empresas de médio/grande porte que querem escalar com inteligência.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1rem">
+        <p style="font-family:var(--mono);font-size:.7rem;color:#ff6060;margin-bottom:.4rem">O PROBLEMA</p>
+        <p style="font-size:.85rem;margin:0">Caos operacional, processos manuais, marca que não traduz o valor real do negócio.</p>
+      </div>
+      <div style="background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:1rem">
+        <p style="font-family:var(--mono);font-size:.7rem;color:var(--blue);margin-bottom:.4rem">O GUIA (SINCRONIA)</p>
+        <p style="font-size:.85rem;margin:0">Autoridade com empatia. Demonstra sistemas rodando antes de pedir qualquer compromisso.</p>
+      </div>
+      <div style="background:rgba(0,229,200,0.05);border:1px solid rgba(0,229,200,0.2);border-radius:10px;padding:1rem">
+        <p style="font-family:var(--mono);font-size:.7rem;color:var(--primary);margin-bottom:.4rem">O SUCESSO</p>
+        <p style="font-size:.85rem;margin:0">"Do caos à clareza. 360° mais inteligente." Operação autônoma, marca premium reconhecida.</p>
+      </div>
+    </div>
+
+    <h3>Tom de Voz</h3>
+    <table class="token-table">
+      <tr><th>É</th><th>Não é</th></tr>
+      <tr><td>Direto e preciso</td><td>Prolixo ou acadêmico</td></tr>
+      <tr><td>Confiante sem arrogância</td><td>Agressivo ou vendedor</td></tr>
+      <tr><td>Técnico quando necessário</td><td>Jargão vazio para impressionar</td></tr>
+      <tr><td>Humanizado e estratégico</td><td>Frio ou robotizado</td></tr>
+    </table>
+
+    <h3>Pilares Culturais (Denise Lee Yohn)</h3>
+    <ul>
+      <li><strong>Show, Don't Tell:</strong> Nunca prometemos o que não podemos mostrar funcionando.</li>
+      <li><strong>Qualidade Implacável:</strong> Da proposta ao relatório final — o mesmo nível visual deste Brand Book.</li>
+      <li><strong>Humanização Aprimorada:</strong> A IA faz o trabalho pesado. A Sincronia mantém a relação estratégica 100% humana.</li>
+    </ul>
+
+    <hr class="divider">
+    <p style="font-family:var(--mono);font-size:.85rem;color:rgba(255,255,255,0.3);text-align:center;margin:0">
+      <span style="color:var(--primary)">SINCRONIA</span> · Branding & Automação Premium · Construindo o amanhã, hoje. &copy; 2026
+    </p>
+  </div>
+  <div class="pfoot"><span>SINCRONIA BRANDING E AUTOMAÇÃO</span><span>06</span></div>
+</div>
+
+</body>
+</html>
