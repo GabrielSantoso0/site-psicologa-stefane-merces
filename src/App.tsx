@@ -1,3 +1,4 @@
+// VERIFICACAO VERCEL
 import { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { Menu, ArrowRight, Cpu, Bot, Lock, Workflow, BarChart } from 'lucide-react';
