@@ -1,19 +1,18 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
-import { Menu, ArrowRight, Compass, Cpu, Bot, Check, Lock, LineChart, Zap, Workflow, BarChart } from 'lucide-react';
+import { Menu, ArrowRight, Cpu, Bot, Lock, Workflow, BarChart } from 'lucide-react';
+
+// @ts-ignore
 import logoUrl from '../Vector.png';
+// @ts-ignore
 import heroVideoUrl from '../magnific_referencia-visual-img1.-g_2927519585.mp4';
+// @ts-ignore
 import symbolVideoUrl from '../magnific_img1-animar-este-simbolo-_2927311707.mp4';
 
 // Animações baseadas em scroll (como no Imagica)
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
 };
 
 export default function App() {
@@ -320,10 +319,7 @@ export default function App() {
             gap: '1.5rem',
             alignItems: 'center',
             maxWidth: '1100px',
-            margin: '0 auto',
-            '@media (max-width: 768px)': {
-              gridTemplateColumns: '1fr'
-            }
+            margin: '0 auto'
           }} className="bento-grid-wrapper">
             
             {/* Coluna Esquerda */}
