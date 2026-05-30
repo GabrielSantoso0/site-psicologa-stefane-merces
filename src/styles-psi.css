@@ -1,0 +1,767 @@
+/* ==========================================================================
+   ESTILOS CUSTOMIZADOS - DRA. STÉFANE MERCÊS (CLÍNICA HUMANIZADA / BOUTIQUE)
+   Paleta do Figma: #994216 (Terracota Escuro), #B9532E (Terracota Claro), #FFFFFF, #000000
+   ========================================================================== */
+
+   :root {
+    --psi-primary: #994216;      /* Terracota Escuro - Do Figma */
+    --psi-accent: #B9532E;       /* Terracota Claro - Do Figma */
+    --psi-accent-glow: rgba(185, 83, 46, 0.2);
+    --psi-bg: #FAF9F6;           /* Off-white quente de linho */
+    --psi-dark: #1A1A1A;         /* Preto Suave */
+    --psi-border: rgba(153, 66, 22, 0.15);
+    
+    --font-sans: 'Montserrat', sans-serif;
+    --font-serif: 'Merriweather', serif;
+    --font-ui: 'Inter', sans-serif;
+    
+    --psi-transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --psi-transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Global Reset específico para a página da Stéfane */
+.psi-body {
+    background-color: var(--psi-bg);
+    color: var(--psi-dark);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Textura Global de Ruído (Noise Overlay) */
+.psi-noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.045; /* Suave ruído analógico */
+}
+
+/* Tipografia */
+.psi-title-sans {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.psi-text-serif-italic {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.psi-text-mono {
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--psi-accent);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 6%;
+}
+
+/* Navbar Flutuante ("A Ilha Flutuante") */
+.psi-navbar-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    transition: var(--psi-transition);
+}
+
+.psi-navbar-pill {
+    background: rgba(255, 255, 255, 0.12); /* Vidro translúcido suave */
+    backdrop-filter: blur(18px); /* Desfocagem de fundo estilo vidro real */
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Borda fina branca de vidro */
+    padding: 0.7rem 2.2rem;
+    border-radius: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1100px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transition: var(--psi-transition);
+}
+
+.psi-navbar-pill.scrolled {
+    background: rgba(153, 66, 22, 0.45); /* Lindo vidro terracota ao rolar */
+    border-color: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.psi-nav-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--psi-transition);
+}
+
+.psi-nav-logo-img {
+    height: 38px; /* Altura ideal da logo no menu */
+    width: auto;
+    display: block;
+}
+
+.psi-nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.psi-nav-links a {
+    color: #FFFFFF; /* Textos brancos para contraste perfeito sobre o vidro do Hero */
+    font-family: var(--font-ui);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    opacity: 0.85;
+    transition: var(--psi-transition);
+}
+
+.psi-nav-links a:hover {
+    opacity: 1;
+    color: #FAF9F6;
+}
+
+/* Botões Magnéticos / Humanizados */
+.psi-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+    overflow: hidden;
+    transition: var(--psi-transition-spring);
+    border: 1px solid transparent;
+    z-index: 1;
+}
+
+.psi-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(153, 66, 22, 0.1);
+}
+
+.psi-btn-primary {
+    background-color: var(--psi-primary);
+    color: #FFFFFF;
+}
+
+.psi-btn-primary .psi-btn-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--psi-accent);
+    transform: translateY(100%);
+    transition: var(--psi-transition);
+    z-index: -1;
+}
+
+.psi-btn-primary:hover .psi-btn-bg {
+    transform: translateY(0);
+}
+
+.psi-btn-accent {
+    background-color: var(--psi-accent);
+    color: #FFFFFF;
+    box-shadow: 0 4px 15px var(--psi-accent-glow);
+}
+
+.psi-btn-accent .psi-btn-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--psi-primary);
+    transform: translateY(100%);
+    transition: var(--psi-transition);
+    z-index: -1;
+}
+
+.psi-btn-accent:hover .psi-btn-bg {
+    transform: translateY(0);
+}
+
+.psi-btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF !important;
+}
+
+.psi-btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Menu Button */
+.psi-mobile-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--psi-primary);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .psi-nav-links {
+        display: none;
+    }
+    .psi-navbar-pill .psi-btn {
+        display: none;
+    }
+    .psi-mobile-btn {
+        display: block;
+    }
+}
+
+.psi-mobile-menu {
+    position: fixed;
+    top: 5.5rem; left: 5%; right: 5%;
+    background: #FAF9F6;
+    border: 1px solid var(--psi-border);
+    border-radius: 2rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    box-shadow: 0 20px 40px rgba(153, 66, 22, 0.08);
+    z-index: 999;
+}
+
+.psi-mobile-menu a {
+    color: var(--psi-dark);
+    font-family: var(--font-ui);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(153, 66, 22, 0.05);
+}
+
+/* ===== HERO SECTION ===== */
+.psi-hero {
+    position: relative;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding-top: 8rem;
+    padding-bottom: 6rem;
+    overflow: hidden;
+    background-color: var(--psi-bg);
+}
+
+.psi-hero-bg-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+}
+
+.psi-hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 1; /* Apenas a imagem do usuário, sem transparência excessiva */
+    filter: none;
+}
+
+.psi-hero-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Leve degradê escuro linear para legibilidade inquestionável do texto branco no lado esquerdo */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.psi-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    padding: 2rem 0;
+}
+
+.psi-hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-bottom: 0.8rem; /* Reduzido para aproximar do título e criar um bloco unificado */
+}
+
+.psi-hero-title {
+    font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+    color: #FFFFFF; /* Título alterado para branco conforme pedido */
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.psi-hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.85); /* Subtítulo em branco de alta opacidade para excelente contraste */
+    font-weight: 400;
+    max-width: 680px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+}
+
+/* ===== SEÇÃO "COMO FUNCIONA O ATENDIMENTO" ===== */
+.psi-how-section {
+    background-color: var(--psi-primary); /* #994216 do Figma */
+    color: #FFFFFF;
+    padding: 8rem 0;
+    position: relative;
+}
+
+.psi-how-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 5rem;
+}
+
+.psi-how-title {
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: #FFFFFF;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.psi-how-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+.psi-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+}
+
+@media (max-width: 968px) {
+    .psi-steps-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+.psi-step-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2rem;
+    padding: 3rem 2.2rem;
+    transition: var(--psi-transition);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.psi-step-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.psi-step-icon {
+    width: 60px; height: 60px;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.psi-step-card-title {
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.psi-step-card-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* ===== SEÇÃO "SOBRE MIM" ===== */
+.psi-about-section {
+    background-color: #FFFFFF; /* Fundo branco do Figma */
+    color: #000000;            /* Textos em preto */
+    padding: 9rem 0;
+}
+
+.psi-about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+}
+
+@media (max-width: 968px) {
+    .psi-about-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+    }
+}
+
+.psi-about-image-container {
+    position: relative;
+    border-radius: 2.5rem;
+    aspect-ratio: 4/5;
+    box-shadow: 0 20px 50px rgba(153, 66, 22, 0.05);
+}
+
+.psi-about-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 2.5rem;
+    z-index: 2;
+    position: relative;
+}
+
+.psi-about-image-frame {
+    position: absolute;
+    top: 1.5rem; left: 1.5rem; width: 100%; height: 100%;
+    border: 2px solid var(--psi-primary);
+    border-radius: 2.5rem;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.psi-about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.psi-about-label {
+    margin-bottom: -0.5rem;
+}
+
+.psi-about-title {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: #000000;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+.psi-about-paragraph {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #333333;
+}
+
+/* Caixa de Citação / Frase de Destaque */
+.psi-quote-box {
+    border-left: 3px solid var(--psi-accent);
+    padding-left: 2rem;
+    margin-top: 1.5rem;
+}
+
+.psi-quote-text {
+    font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+    line-height: 1.5;
+    color: #000000;
+}
+
+/* ===== SEÇÃO DE FECHAMENTO / CTA ===== */
+.psi-cta-section {
+    background-color: var(--psi-accent); /* #B9532E do Figma (Cor do quadrado menor) */
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden; /* Cortar as rebarbas do símbolo gigante para mantê-lo estritamente na seção marrom */
+}
+
+.psi-cta-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px; height: 1000px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(153, 66, 22, 0) 70%);
+    pointer-events: none;
+}
+
+.psi-cta-card {
+    background: transparent; /* Removido o retângulo mais claro conforme pedido */
+    border-radius: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 968px) {
+    .psi-cta-card {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 3.5rem;
+    }
+}
+
+.psi-cta-watermark {
+    position: absolute;
+    top: 0; /* Alinhado exatamente encostado na borda superior do quadrado terracota */
+    left: -5%;
+    width: 780px; /* Mantido gigante e imponente */
+    height: auto;
+    opacity: 0.28; /* Mantida a excelente visibilidade */
+    filter: brightness(0.65) contrast(1.15); /* Cor marrom escura e nítida */
+    pointer-events: none;
+    z-index: 0;
+}
+
+.psi-cta-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.psi-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-top: 1rem;
+}
+
+.psi-contact-item {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+}
+
+.psi-cta-form-container {
+    background: #FFFFFF;
+    border-radius: 2.2rem;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+.psi-form-title {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--psi-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.psi-cta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.psi-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.psi-input-label {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--psi-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.psi-input {
+    background: #FAF9F6;
+    border: 1px solid rgba(153, 66, 22, 0.15);
+    border-radius: 1rem;
+    padding: 0.9rem 1.2rem;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    color: var(--psi-dark);
+    outline: none;
+    transition: var(--psi-transition);
+}
+
+.psi-input:focus {
+    border-color: var(--psi-accent);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(185, 83, 46, 0.1);
+}
+
+/* ===== FOOTER PRINCIPAL ===== */
+.psi-footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid rgba(153, 66, 22, 0.08);
+    padding: 6rem 0 3rem;
+}
+
+.psi-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .psi-footer-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+}
+
+.psi-footer-brand {
+    max-width: 360px;
+}
+
+.psi-footer-logo {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.45rem;
+    color: var(--psi-primary);
+}
+
+.psi-footer-desc {
+    font-family: var(--font-sans);
+    color: #555555;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin-top: 1.2rem;
+}
+
+.psi-footer-links {
+    display: flex;
+    gap: 4rem;
+}
+
+@media (max-width: 480px) {
+    .psi-footer-links {
+        gap: 2rem;
+        flex-direction: column;
+    }
+}
+
+.psi-footer-column {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.psi-footer-column-title {
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--psi-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.psi-footer-column a {
+    color: var(--psi-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-family: var(--font-ui);
+    font-weight: 500;
+    transition: var(--psi-transition);
+    opacity: 0.8;
+}
+
+.psi-footer-column a:hover {
+    color: var(--psi-accent);
+    opacity: 1;
+}
+
+.psi-footer-bottom {
+    border-top: 1px solid rgba(153, 66, 22, 0.06);
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #666666;
+    font-family: var(--font-ui);
+}
+
+@media (max-width: 768px) {
+    .psi-footer-bottom {
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
+    }
+}
+
+.psi-status-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--psi-primary);
+    background: rgba(153, 66, 22, 0.05);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+}
+
+.psi-pulse-dot {
+    width: 7px; height: 7px;
+    background-color: var(--psi-accent);
+    border-radius: 50%;
+    animation: psi-pulse 1.8s infinite;
+}
+
+@keyframes psi-pulse {
+    0% { transform: scale(0.85); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(0.85); opacity: 0.6; }
+}
+
+/* Logo Styling & Precise Terracotta Brown Coloring */
+.psi-about-logo-img {
+    height: clamp(38px, 4.5vw, 52px);
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 0.8rem;
+    /* CSS filter converts any image colors (e.g. white logo) into the exact #994216 brand brown */
+    filter: brightness(0) saturate(100%) invert(31%) sepia(87%) saturate(1212%) hue-rotate(345deg) brightness(85%) contrast(92%);
+}
+
+.psi-footer-logo-img {
+    height: clamp(32px, 3.5vw, 42px);
+    width: auto;
+    display: block;
+    margin-bottom: 1.2rem;
+    /* CSS filter converts any image colors (e.g. white logo) into the exact #994216 brand brown */
+    filter: brightness(0) saturate(100%) invert(31%) sepia(87%) saturate(1212%) hue-rotate(345deg) brightness(85%) contrast(92%);
+}
