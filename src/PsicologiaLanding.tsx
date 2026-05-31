@@ -164,7 +164,7 @@ export default function PsicologiaLanding() {
               <div className="psi-step-icon">
                 <MessageCircle size={28} />
               </div>
-              <h3 className="psi-step-card-title">1. Primeiro contato</h3>
+              <h3 className="psi-step-card-title">Primeiro contato</h3>
               <p className="psi-step-card-text">
                 Você entra em contato para tirar dúvidas ou agendar sua primeira sessão. Um início sem burocracias, com escuta atenta desde a primeira mensagem.
               </p>
@@ -181,7 +181,7 @@ export default function PsicologiaLanding() {
               <div className="psi-step-icon">
                 <Calendar size={28} />
               </div>
-              <h3 className="psi-step-card-title">2. Atendimento online</h3>
+              <h3 className="psi-step-card-title">Atendimento online</h3>
               <p className="psi-step-card-text">
                 As sessões acontecem de forma online, em um ambiente seguro e confortável, permitindo que você seja atendido de onde estiver, sem estresse de deslocamento.
               </p>
