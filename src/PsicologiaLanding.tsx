@@ -40,7 +40,7 @@ export default function PsicologiaLanding() {
           </a>
 
           {/* Links Desktop */}
-          <div className="psi-nav-links" style={{ display: 'flex', gap: '2.5rem' }}>
+          <div className="psi-nav-links">
             <a href="#inicio">Home</a>
             <a href="#sobre">Sobre mim</a>
             <a href="#como-funciona">Sessões</a>
@@ -53,7 +53,7 @@ export default function PsicologiaLanding() {
           </a>
 
           {/* Botão Mobile */}
-          <button className="psi-mobile-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: 'none' }}>
+          <button className="psi-mobile-btn" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </nav>
