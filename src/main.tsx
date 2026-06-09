@@ -9,7 +9,7 @@ import './styles-portfolio.css'
 import './styles-designer.css'
 
 function MainRouter() {
-  const [currentRoute, setCurrentRoute] = useState<'portfolio' | 'psi' | 'pedalboard' | 'designer'>('portfolio');
+  const [currentRoute, setCurrentRoute] = useState<'portfolio' | 'psi' | 'pedalboard' | 'designer'>('psi');
 
   return (
     <>
