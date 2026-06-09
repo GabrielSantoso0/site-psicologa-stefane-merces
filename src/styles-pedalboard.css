@@ -1,0 +1,818 @@
+/* --- STYLES-PEDALBOARD.CSS --- */
+
+:root {
+  --bg-pedalboard: #0b0c0e;
+  --bg-panel: #13151a;
+  --bg-panel-light: #1c1f26;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(0, 229, 200, 0.15);
+  
+  /* Pedal colors */
+  --color-comp: #00E5A3;
+  --color-drive: #FF9F1C;
+  --color-eq: #00D2FF;
+  --color-chorus: #9D4EDD;
+  --color-delay: #FF007F;
+  --color-reverb: #4361EE;
+  
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+}
+
+.pedalboard-container {
+  min-height: 100vh;
+  background-color: var(--bg-pedalboard);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Background overlay grid */
+.pedalboard-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Route Switcher (Header) */
+.pedalboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+}
+
+.pedalboard-title-group h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  margin: 0;
+  background: linear-gradient(135deg, #fff 0%, #a1a1a1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pedalboard-title-group p {
+  margin: 0.2rem 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pedalboard-nav-switcher {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn-route-switch {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-route-switch:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Control Hub - Input & Test loops */
+.control-hub {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .control-hub {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hub-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.hub-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.hub-panel h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 1rem 0;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Active audio source control */
+.audio-source-selectors {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.source-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.source-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.source-btn.active {
+  background: rgba(0, 229, 200, 0.05);
+  border-color: rgba(0, 229, 200, 0.4);
+  box-shadow: 0 0 15px rgba(0, 229, 200, 0.05);
+}
+
+.source-btn.active-warn {
+  background: rgba(255, 159, 28, 0.05);
+  border-color: rgba(255, 159, 28, 0.4);
+}
+
+.source-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.source-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.source-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.status-indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #374151;
+  transition: all 0.3s ease;
+}
+
+.active .status-indicator-dot {
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+}
+
+.active-warn .status-indicator-dot {
+  background: #FF9F1C;
+  box-shadow: 0 0 8px #FF9F1C;
+}
+
+/* Audio Player control */
+.demo-player-ui {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  height: 100%;
+  justify-content: center;
+}
+
+.demo-selector {
+  background: var(--bg-panel-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+}
+
+.demo-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.play-pause-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+
+.play-pause-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.play-pause-btn.playing {
+  background: var(--color-comp);
+  color: #000;
+  border-color: transparent;
+}
+
+.slider-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.slider-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.input-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.input-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Master Amp simulator selector */
+.amp-sim-hub {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.amp-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.amp-btn {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 0.6rem 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.amp-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+.amp-btn.active {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Canvas Visualizer Panel */
+.visualizer-canvas-container {
+  width: 100%;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.visualizer-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Signal Chain Visual Route */
+.signal-chain-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  align-self: center;
+  margin: 0.2rem 0;
+  z-index: 2;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.chain-node {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  opacity: 0.4;
+  transition: all 0.3s ease;
+}
+
+.chain-node.active {
+  opacity: 1;
+  text-shadow: 0 0 10px currentColor;
+}
+
+.chain-node.input { color: #fff; opacity: 0.8; }
+.chain-node.output { color: #fff; opacity: 0.8; }
+.chain-node.comp { color: var(--color-comp); border-color: rgba(0, 229, 163, 0.2); }
+.chain-node.drive { color: var(--color-drive); border-color: rgba(255, 159, 28, 0.2); }
+.chain-node.eq { color: var(--color-eq); border-color: rgba(0, 210, 255, 0.2); }
+.chain-node.chorus { color: var(--color-chorus); border-color: rgba(157, 78, 221, 0.2); }
+.chain-node.delay { color: var(--color-delay); border-color: rgba(255, 0, 127, 0.2); }
+.chain-node.reverb { color: var(--color-reverb); border-color: rgba(67, 97, 238, 0.2); }
+.chain-node.amp { color: #fff; border-color: rgba(255, 255, 255, 0.2); opacity: 1; }
+
+.chain-arrow {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* Preset & Master controls bar */
+.presets-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .presets-bar {
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: stretch;
+  }
+}
+
+.presets-group {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.preset-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.preset-btn-strip {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.preset-pill {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.preset-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: #fff;
+}
+
+.preset-pill.active {
+  background: rgba(0, 229, 200, 0.08);
+  border-color: var(--color-comp);
+  color: #fff;
+}
+
+/* Master Volume controls */
+.master-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* --- THE PEDALBOARD GRID --- */
+.pedals-grid {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  overflow-x: auto;
+  z-index: 2;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-panel-light) transparent;
+}
+
+.pedals-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pedals-grid::-webkit-scrollbar-thumb {
+  background: var(--bg-panel-light);
+  border-radius: 99px;
+}
+
+/* Generic Pedal Box */
+.guitar-pedal {
+  flex: 0 0 220px;
+  min-height: 380px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  box-sizing: border-box;
+  position: relative;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.guitar-pedal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+}
+
+.guitar-pedal:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+/* Individual Pedal Colors & Styles */
+.pedal-comp {
+  background: linear-gradient(180deg, #102A24 0%, #081714 100%);
+  --active-glow: 0 0 20px rgba(0, 229, 163, 0.6);
+  --pedal-accent: var(--color-comp);
+}
+
+.pedal-drive {
+  background: linear-gradient(180deg, #3A2007 0%, #1D1003 100%);
+  --active-glow: 0 0 20px rgba(255, 159, 28, 0.6);
+  --pedal-accent: var(--color-drive);
+}
+
+.pedal-eq {
+  background: linear-gradient(180deg, #0A243A 0%, #05121D 100%);
+  --active-glow: 0 0 20px rgba(0, 210, 255, 0.6);
+  --pedal-accent: var(--color-eq);
+}
+
+.pedal-chorus {
+  background: linear-gradient(180deg, #240E35 0%, #11061A 100%);
+  --active-glow: 0 0 20px rgba(157, 78, 221, 0.6);
+  --pedal-accent: var(--color-chorus);
+}
+
+.pedal-delay {
+  background: linear-gradient(180deg, #35051F 0%, #1A020F 100%);
+  --active-glow: 0 0 20px rgba(255, 0, 127, 0.6);
+  --pedal-accent: var(--color-delay);
+}
+
+.pedal-reverb {
+  background: linear-gradient(180deg, #0D163A 0%, #060A1C 100%);
+  --active-glow: 0 0 20px rgba(67, 97, 238, 0.6);
+  --pedal-accent: var(--color-reverb);
+}
+
+/* Pedal Branding / Typography */
+.pedal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.6rem;
+}
+
+.pedal-logo-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.pedal-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0.1rem 0;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.pedal-type {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pedal-accent);
+}
+
+/* Pedal Knobs Container */
+.pedal-knobs-area {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem 0.8rem;
+  justify-items: center;
+  align-content: start;
+  flex-grow: 1;
+}
+
+.pedal-knobs-area.triple-knobs {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 0.4rem;
+}
+
+.pedal-knobs-area.single-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Rotary Knob Component */
+.knob-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: ns-resize; /* North-South drag resize cursor */
+  user-select: none;
+}
+
+.knob-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.knob-body {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2a2e36 0%, #15171c 100%);
+  border: 2px solid #000;
+  box-shadow: 
+    0 4px 8px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  position: relative;
+  transition: transform 0.05s linear;
+}
+
+/* Subtle notch indicators around the knob */
+.knob-indicator-dot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 10px;
+  background-color: var(--pedal-accent);
+  border-radius: 2px;
+}
+
+.knob-value-display {
+  font-family: monospace;
+  font-size: 0.6rem;
+  color: var(--text-muted);
+}
+
+/* Pedal Switches / Mode Selectors */
+.pedal-toggle-row {
+  margin: 0.6rem 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pedal-mode-select {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 6px;
+  color: #fff;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.65rem;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Foot Switch & LED (Bottom of Stompbox) */
+.pedal-footswitch-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.pedal-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #2b1f1f;
+  border: 1px solid #000;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  transition: all 0.2s ease;
+}
+
+.pedal-led.active {
+  background-color: var(--pedal-accent);
+  box-shadow: 
+    var(--active-glow),
+    inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.pedal-stomp-button {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #888e99 0%, #4a4f59 100%);
+  border: 2px solid #222;
+  box-shadow: 
+    0 6px 10px rgba(0,0,0,0.5),
+    inset 0 2px 3px rgba(255,255,255,0.3);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pedal-stomp-button::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 0, 0, 0.25);
+}
+
+.pedal-stomp-button:active {
+  transform: scale(0.92);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,0.8),
+    inset 0 4px 6px rgba(0,0,0,0.4);
+}
+
+.pedal-bypass-label {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Master volume pedal */
+.master-volume-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 80px;
+  align-items: center;
+}
+
+.master-vol-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.pedalboard-instructions {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-top: 1.5rem;
+  z-index: 2;
+}
+
+.pedalboard-instructions h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.6rem 0;
+  color: #fff;
+}
+
+.pedalboard-instructions ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.pedalboard-instructions li {
+  margin-bottom: 0.4rem;
+}

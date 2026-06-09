@@ -238,11 +238,11 @@ export default function PsicologiaLanding() {
               </h2>
 
               <p className="psi-about-paragraph">
-                Sou psicóloga formada, com especialização em Psicologia Baseada em Evidências e Terapias Baseadas em Evidências, atuando com um olhar acolhedor, ético e individualizado para cada pessoa.
+                Sou psicóloga formada, com especialização em Psicologia Baseada em Evidências, atuando com um olhar acolhedor, ético e individualizado para cada pessoa.
               </p>
               
               <p className="psi-about-paragraph">
-                Também sou neuropsicóloga, com formação em neuroavaliação, auxiliando na compreensão de questões relacionadas ao funcionamento cognitivo, emocional e comportamental. Meu trabalho busca unir conhecimento científico e escuta genuína, respeitando a singularidade de cada trajetória.
+                Também sou neuropsicóloga, auxiliando na compreensão de questões relacionadas ao funcionamento cognitivo, emocional e comportamental. Meu trabalho busca unir conhecimento científico e escuta genuína, respeitando a singularidade de cada trajetória.
               </p>
 
               {/* Bloco de Citação / Frase de Impacto */}
