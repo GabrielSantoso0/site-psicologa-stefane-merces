@@ -12,9 +12,54 @@ import logoImg from './Ativo 1.png';
 // @ts-ignore
 import logoSymbol from './Ativo 2.png';
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 export default function PsicologiaLanding() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Inicialização do Google Analytics 4 (GA4) dinâmico
+  useEffect(() => {
+    const gaId = (import.meta as any).env?.VITE_GA_ID;
+    if (!gaId) return;
+
+    // Injeta o script do Google Tag Manager
+    const script1 = document.createElement('script');
+    script1.async = true;
+    script1.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(script1);
+
+    // Injeta a configuração do gtag
+    const script2 = document.createElement('script');
+    script2.innerHTML = `
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function(){window.dataLayer.push(arguments);}
+      window.gtag('js', new Date());
+      window.gtag('config', '${gaId}', {
+        page_path: window.location.pathname,
+      });
+    `;
+    document.head.appendChild(script2);
+
+    return () => {
+      if (document.head.contains(script1)) document.head.removeChild(script1);
+      if (document.head.contains(script2)) document.head.removeChild(script2);
+    };
+  }, []);
+
+  const trackConversion = (action: string, label: string) => {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', action, {
+        event_category: 'Conversion',
+        event_label: label,
+      });
+    }
+  };
 
   // Monitorar scroll para efeito na Navbar
   useEffect(() => {
@@ -47,7 +92,14 @@ export default function PsicologiaLanding() {
             <a href="#contato">Agendamentos</a>
           </div>
 
-          <a href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" className="psi-btn psi-btn-primary" style={{ padding: '0.5rem 1.5rem', fontSize: '0.85rem' }}>
+          <a 
+            href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="psi-btn psi-btn-primary" 
+            style={{ padding: '0.5rem 1.5rem', fontSize: '0.85rem' }}
+            onClick={() => trackConversion('click_whatsapp_navbar', 'Navbar Button')}
+          >
             Agendar Sessão
             <div className="psi-btn-bg"></div>
           </a>
@@ -76,6 +128,7 @@ export default function PsicologiaLanding() {
             rel="noopener noreferrer" 
             className="psi-btn psi-btn-primary" 
             style={{ width: '100%', marginTop: '1rem' }}
+            onClick={() => trackConversion('click_whatsapp_mobile_menu', 'Mobile Menu Button')}
           >
             Agendar Sessão
           </a>
@@ -118,7 +171,13 @@ export default function PsicologiaLanding() {
               transition={{ duration: 0.8, delay: 0.6 }}
               style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap' }}
             >
-              <a href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" className="psi-btn psi-btn-accent">
+              <a 
+                href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="psi-btn psi-btn-accent"
+                onClick={() => trackConversion('click_whatsapp_hero', 'Hero Button')}
+              >
                 Agende a sua consulta <ArrowRight size={18} />
                 <div className="psi-btn-bg"></div>
               </a>
@@ -312,6 +371,9 @@ export default function PsicologiaLanding() {
                 const form = e.target as HTMLFormElement;
                 const name = (form.elements.namedItem('name') as HTMLInputElement).value;
                 const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
+                
+                trackConversion('submit_contact_form', `Form submitted by ${name}`);
+
                 const whatsappUrl = `https://wa.me/5521968892975?text=Olá,%20Stefane!%20Meu%20nome%20é%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
                 window.open(whatsappUrl, '_blank');
               }}>
