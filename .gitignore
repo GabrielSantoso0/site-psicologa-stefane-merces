@@ -3,6 +3,7 @@ dist/
 .env
 .DS_Store
 *.mp4
+!src/BA O Som que Você escolhe ouvir 27 11 2025.mp4
 *.zip
 remotion/node_modules/
 remotion/out/
