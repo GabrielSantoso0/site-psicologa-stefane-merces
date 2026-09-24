@@ -89,7 +89,7 @@ export default function PsicologiaLanding() {
             <a href="#inicio">Início</a>
             <a href="#sobre">Sobre Mim</a>
             <a href="#como-funciona">Psicoterapia</a>
-            <a href="#neuroavaliacao" className="psi-nav-highlight">Neuroavaliação</a>
+            <a href="#neuroavaliacao">Neuroavaliação</a>
             <a href="#contato">Contato</a>
           </div>
 
@@ -122,9 +122,7 @@ export default function PsicologiaLanding() {
           <a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Início</a>
           <a href="#sobre" onClick={() => setMobileMenuOpen(false)}>Sobre Mim</a>
           <a href="#como-funciona" onClick={() => setMobileMenuOpen(false)}>Psicoterapia</a>
-          <a href="#neuroavaliacao" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--psi-primary)', fontWeight: 600 }}>
-            Neuroavaliação ✨
-          </a>
+          <a href="#neuroavaliacao" onClick={() => setMobileMenuOpen(false)}>Neuroavaliação</a>
           <a href="#contato" onClick={() => setMobileMenuOpen(false)}>Contato</a>
           <a 
             href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." 
