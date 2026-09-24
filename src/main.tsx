@@ -4,15 +4,21 @@ import PortfolioApp from './PortfolioApp.tsx'
 import PsicologiaLanding from './PsicologiaLanding.tsx'
 import PedalboardApp from './PedalboardApp.tsx'
 import DesignerAgentApp from './DesignerAgentApp.tsx'
+import CraftPromoApp from './CraftPromoApp.tsx'
 import './styles-psi.css'
 import './styles-portfolio.css'
 import './styles-designer.css'
+import './styles-craft.css'
 
 function MainRouter() {
-  const [currentRoute, setCurrentRoute] = useState<'portfolio' | 'psi' | 'pedalboard' | 'designer'>('psi');
+  const [currentRoute, setCurrentRoute] = useState<'portfolio' | 'psi' | 'pedalboard' | 'designer' | 'craft'>('psi');
 
   return (
     <>
+      {currentRoute === 'craft' && (
+        <CraftPromoApp onNavigateTo={setCurrentRoute} />
+      )}
+
       {currentRoute === 'designer' && (
         <DesignerAgentApp onNavigateTo={setCurrentRoute} />
       )}

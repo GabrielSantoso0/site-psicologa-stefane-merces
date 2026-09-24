@@ -19,6 +19,12 @@
     --psi-transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+html, body {
+    overflow-x: hidden;
+    overflow-y: auto !important;
+    height: auto !important;
+}
+
 /* Global Reset específico para a página da Stéfane */
 .psi-body {
     background-color: var(--psi-bg);
@@ -26,6 +32,7 @@
     font-family: var(--font-sans);
     line-height: 1.7;
     overflow-x: hidden;
+    overflow-y: visible !important;
     -webkit-font-smoothing: antialiased;
     position: relative;
     min-height: 100vh;
@@ -331,7 +338,7 @@
 
 /* ===== SEÇÃO "COMO FUNCIONA O ATENDIMENTO" ===== */
 .psi-how-section {
-    background-color: var(--psi-primary); /* #994216 do Figma */
+    background-color: #6E2909; /* Marrom Terracota Nobre mais escuro */
     color: #FFFFFF;
     padding: 8rem 0;
     position: relative;
@@ -563,19 +570,49 @@
 }
 
 .psi-cta-form-container {
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 2.2rem;
-    padding: 3rem 2.5rem;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    padding: 3.5rem 2.8rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
 }
 
 .psi-form-title {
-    font-family: var(--font-sans);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--psi-primary);
-    margin-bottom: 2rem;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: #FFFFFF;
+    margin-bottom: 0.5rem;
     text-align: center;
+}
+
+.psi-whatsapp-single-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    background: #25D366;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 100px;
+    padding: 1.25rem 2rem;
+    font-family: var(--font-ui);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--psi-transition-spring);
+    box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+    width: 100%;
+}
+
+.psi-whatsapp-single-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+    background: #20BD5A;
 }
 
 .psi-cta-form {
@@ -765,3 +802,295 @@
     /* CSS filter converts any image colors (e.g. white logo) into the exact #994216 brand brown */
     filter: brightness(0) saturate(100%) invert(31%) sepia(87%) saturate(1212%) hue-rotate(345deg) brightness(85%) contrast(92%);
 }
+
+/* Destaque para link de Neuroavaliação no Header */
+.psi-nav-links a.psi-nav-highlight {
+    background: rgba(185, 83, 46, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.3rem 0.85rem;
+    border-radius: 100px;
+    font-weight: 600;
+    opacity: 1;
+    color: #FFFFFF;
+    transition: var(--psi-transition);
+}
+
+.psi-nav-links a.psi-nav-highlight:hover {
+    background: rgba(185, 83, 46, 0.6);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+}
+
+/* ===== SEÇÃO "AVALIAÇÃO NEUROPSICOLÓGICA" (ESTILO TERRASCOTA MATCHING PSICOTERAPIA) ===== */
+.psi-neuro-section {
+    background-color: #6E2909; /* Marrom Terracota Nobre mais escuro */
+    background: linear-gradient(180deg, #5E2307 0%, #6E2909 100%);
+    color: #FFFFFF;
+    padding: 8rem 0;
+    position: relative;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.psi-neuro-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.psi-neuro-badge {
+    display: inline-block;
+    padding: 0.4rem 1.1rem;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 100px;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+}
+
+.psi-neuro-title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    color: #FFFFFF;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.psi-neuro-subtitle {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+.psi-neuro-text-box {
+    background: rgba(255, 255, 255, 0.06);
+    border-left: 4px solid rgba(255, 255, 255, 0.8);
+    border-radius: 1.5rem;
+    padding: 2.5rem 2.8rem;
+    margin: 0 auto 4rem;
+    max-width: 960px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+}
+
+.psi-neuro-support-text {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #FFFFFF;
+    font-style: italic;
+}
+
+.psi-neuro-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 968px) {
+    .psi-neuro-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.psi-neuro-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2rem;
+    padding: 3rem 2.2rem;
+    transition: var(--psi-transition);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.psi-neuro-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.psi-neuro-card-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.3rem;
+}
+
+.psi-neuro-card-title {
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #FFFFFF;
+}
+
+.psi-neuro-card-text {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Cards Segmentados de WhatsApp na Seção de Contato */
+.psi-whatsapp-card-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    background: #FFFFFF;
+    border: 2px solid rgba(153, 66, 22, 0.15);
+    border-radius: 1.5rem;
+    padding: 1.4rem 1.6rem;
+    text-decoration: none;
+    transition: var(--psi-transition-spring);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.psi-whatsapp-card-btn:hover {
+    transform: translateY(-3px);
+    border-color: var(--psi-accent);
+    box-shadow: 0 14px 35px rgba(153, 66, 22, 0.15);
+}
+
+.psi-whatsapp-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 1rem;
+    background: rgba(37, 211, 102, 0.12);
+    color: #25D366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.psi-whatsapp-card-btn-secondary .psi-whatsapp-card-icon {
+    background: rgba(185, 83, 46, 0.12);
+    color: var(--psi-accent);
+}
+
+.psi-whatsapp-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex-grow: 1;
+}
+
+.psi-whatsapp-card-badge {
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--psi-accent);
+}
+
+.psi-whatsapp-card-title {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--psi-primary);
+}
+
+.psi-whatsapp-card-arrow {
+    color: var(--psi-accent);
+    transition: var(--psi-transition);
+    flex-shrink: 0;
+}
+
+.psi-whatsapp-card-btn:hover .psi-whatsapp-card-arrow {
+    transform: translateX(4px);
+}
+
+/* Botão Flutuante de WhatsApp */
+.psi-floating-whatsapp {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.psi-floating-whatsapp:hover {
+    transform: scale(1.08);
+}
+
+.psi-floating-whatsapp-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45), 0 4px 12px rgba(0, 0, 0, 0.18);
+    position: relative;
+    z-index: 2;
+}
+
+.psi-floating-whatsapp-ping {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(37, 211, 102, 0.5);
+    animation: psi-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    z-index: 1;
+}
+
+@keyframes psi-ping {
+    75%, 100% {
+        transform: scale(1.55);
+        opacity: 0;
+    }
+}
+
+.psi-floating-whatsapp-tooltip {
+    position: absolute;
+    right: 68px;
+    background: #1A1A1A;
+    color: #FFFFFF;
+    font-family: var(--font-ui);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.55rem 1.1rem;
+    border-radius: 100px;
+    white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.psi-floating-whatsapp:hover .psi-floating-whatsapp-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+    .psi-floating-whatsapp {
+        bottom: 20px;
+        right: 20px;
+    }
+    .psi-floating-whatsapp-tooltip {
+        display: none;
+    }
+}
+

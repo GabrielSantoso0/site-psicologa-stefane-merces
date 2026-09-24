@@ -1,0 +1,1315 @@
+/* Design System - Craft LinkedIn Promo */
+
+:root {
+  --craft-bg-darker: #050811;
+  --craft-bg-dark: #0a0f1d;
+  --craft-bg-card: #121a2e;
+  --craft-bg-hover: #1e2945;
+  --craft-cyan: #00f5d4;
+  --craft-cyan-glow: rgba(0, 245, 212, 0.4);
+  --craft-blue: #00bbf9;
+  --craft-blue-glow: rgba(0, 187, 249, 0.4);
+  --craft-text-white: #ffffff;
+  --craft-text-muted: #8e9bb4;
+  --craft-border: rgba(255, 255, 255, 0.08);
+  --craft-border-glow: rgba(0, 245, 212, 0.25);
+  --linkedin-blue: #0a66c2;
+  --linkedin-dark-card: #1d2226;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+  --transition-smooth: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.craft-app-body {
+  background-color: var(--craft-bg-darker);
+  font-family: var(--font-sans);
+  color: var(--craft-text-white);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Container Principal */
+.craft-promo-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--craft-bg-darker);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fundo: Mesa de Trabalho e Grid 3D */
+.desk-environment {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  background: 
+    radial-gradient(circle at 50% 30%, rgba(6, 182, 212, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 15% 75%, rgba(0, 245, 212, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 85% 75%, rgba(0, 187, 249, 0.04) 0%, transparent 40%),
+    var(--craft-bg-darker);
+}
+
+.desk-grid {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(800px) rotateX(60deg) translateY(-100px);
+  opacity: 0.8;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 30%, transparent 80%);
+}
+
+.ambient-light-glow {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 250px;
+  background: radial-gradient(ellipse, var(--craft-cyan-glow) 0%, transparent 70%);
+  filter: blur(80px);
+  opacity: 0.6;
+  border-radius: 50%;
+  transition: var(--transition-smooth);
+}
+
+/* Efeito de luz piscando ou respirando */
+@keyframes ambient-pulse {
+  0%, 100% { opacity: 0.5; filter: blur(80px); }
+  50% { opacity: 0.7; filter: blur(100px); }
+}
+
+.ambient-light-glow.animating {
+  animation: ambient-pulse 8s infinite ease-in-out;
+}
+
+/* Wrapper Tridimensional dos Dispositivos */
+.device-perspective-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+/* Ajustes de Perspectiva e Rotação do Aparelho (Fase Inicial) */
+.device-container-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- MOCKUP DO LAPTOP (MACBOOK) --- */
+.laptop-frame {
+  width: 800px;
+  height: 500px;
+  background: #1e293b;
+  border: 14px solid #0f172a;
+  border-bottom: 22px solid #0f172a;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(0, 245, 212, 0.05),
+    inset 0 0 2px rgba(255, 255, 255, 0.2);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Logotipo da Craft no Bezel inferior */
+.laptop-bezel-logo {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--craft-cyan);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  z-index: 10;
+  text-shadow: 0 0 8px var(--craft-cyan-glow);
+}
+
+.laptop-webcam {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #000;
+  border: 1px solid #334155;
+  z-index: 10;
+}
+
+/* Base do Laptop (Teclado) */
+.laptop-base {
+  position: absolute;
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%) rotateX(75deg);
+  transform-origin: top center;
+  width: 960px;
+  height: 220px;
+  background: linear-gradient(to bottom, #1e293b, #0f172a);
+  border-radius: 0 0 16px 16px;
+  box-shadow: 
+    0 15px 35px rgba(0,0,0,0.8),
+    0 3px 0px #334155;
+  z-index: 1;
+}
+
+.laptop-keyboard-indent {
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  width: 80%;
+  height: 100px;
+  background: #090d16;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+  border: 1px solid #1e293b;
+}
+
+.laptop-trackpad {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 70px;
+  background: #1e293b;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* --- MOCKUP DO CELULAR (IPHONE) --- */
+.phone-frame {
+  width: 340px;
+  height: 690px;
+  background: #090d16;
+  border: 12px solid #1e293b;
+  border-radius: 44px;
+  box-shadow: 
+    0 25px 60px -10px rgba(0, 0, 0, 0.8),
+    0 0 35px rgba(0, 187, 249, 0.05),
+    inset 0 0 4px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Notch Dinâmico */
+.phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 28px;
+  background: #000;
+  border-radius: 14px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.phone-camera-dot {
+  width: 6px;
+  height: 6px;
+  background: #1e293b;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+.phone-speaker {
+  width: 30px;
+  height: 3px;
+  background: #222;
+  border-radius: 2px;
+}
+
+/* Status Bar do Celular */
+.phone-status-bar {
+  height: 48px;
+  padding: 12px 24px 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  z-index: 10;
+  position: relative;
+  background: var(--craft-bg-dark);
+  border-bottom: 1px solid var(--craft-border);
+}
+
+.phone-status-icons {
+  display: flex;
+  gap: 6px;
+}
+
+/* --- CONTEÚDO DA TELA (BROWSER FRAME) --- */
+.screen-wrapper {
+  width: 100%;
+  height: 100%;
+  background: var(--craft-bg-dark);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cabeçalho do Navegador (só no laptop) */
+.browser-chrome {
+  height: 40px;
+  background: var(--craft-bg-dark);
+  border-bottom: 1px solid var(--craft-border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 16px;
+  z-index: 10;
+}
+
+.browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.browser-dot.red { background: #ef4444; }
+.browser-dot.yellow { background: #eab308; }
+.browser-dot.green { background: #22c55e; }
+
+.browser-address-bar {
+  flex: 1;
+  height: 26px;
+  background: var(--craft-bg-card);
+  border-radius: 6px;
+  border: 1px solid var(--craft-border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--craft-text-muted);
+}
+
+.browser-lock-icon {
+  margin-right: 6px;
+  color: var(--craft-cyan);
+}
+
+.browser-address-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.browser-address-text span {
+  color: var(--craft-text-white);
+}
+
+/* Area de Conteúdo Rolável */
+.viewport-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar Customizada */
+.viewport-content::-webkit-scrollbar {
+  width: 6px;
+}
+.viewport-content::-webkit-scrollbar-track {
+  background: var(--craft-bg-dark);
+}
+.viewport-content::-webkit-scrollbar-thumb {
+  background: var(--craft-bg-hover);
+  border-radius: 3px;
+}
+
+/* --- MOCKUP DO LINKEDIN (CRAFT BRANDED) --- */
+.linkedin-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #050811; /* Fundo extra escuro para contraste */
+  min-height: 100%;
+}
+
+/* Header do LinkedIn */
+.linkedin-navbar {
+  height: 52px;
+  background: #0f172a;
+  border-bottom: 1px solid var(--craft-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.linkedin-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkedin-logo-box {
+  width: 34px;
+  height: 34px;
+  background: var(--linkedin-blue);
+  color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: var(--font-sans);
+}
+
+.linkedin-search-mock {
+  width: 220px;
+  height: 32px;
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid var(--craft-border);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  color: var(--craft-text-muted);
+  font-size: 11px;
+}
+
+.linkedin-nav-items {
+  display: flex;
+  gap: 20px;
+}
+
+.linkedin-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--craft-text-muted);
+  font-size: 10px;
+  cursor: pointer;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.linkedin-nav-item.active {
+  color: var(--craft-text-white);
+}
+
+.linkedin-nav-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--craft-cyan);
+  box-shadow: 0 0 8px var(--craft-cyan);
+}
+
+/* Perfil da Empresa (Profile Header) */
+.company-profile-card {
+  background: #0c1222;
+  border: 1px solid var(--craft-border);
+  border-radius: 8px;
+  margin: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.5);
+}
+
+/* Banner de Tecnologia de Supply Chain da Craft */
+.company-banner {
+  height: 160px;
+  background: linear-gradient(135deg, #091225 0%, #11264c 50%, #034f59 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grid dinâmico de supply chain ilustrado com SVG no banner */
+.company-banner-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+}
+
+.company-logo-container {
+  width: 112px;
+  height: 112px;
+  background: #0a0f1d;
+  border: 4px solid #0c1222;
+  border-radius: 8px;
+  position: absolute;
+  left: 24px;
+  bottom: -36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  z-index: 5;
+}
+
+.company-logo-svg {
+  width: 70%;
+  height: 70%;
+}
+
+.company-info-area {
+  padding: 48px 24px 24px 24px;
+  position: relative;
+}
+
+.company-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--craft-text-white);
+  letter-spacing: -0.5px;
+}
+
+.company-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0, 245, 212, 0.1);
+  color: var(--craft-cyan);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  border: 1px solid rgba(0, 245, 212, 0.2);
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.company-tagline {
+  font-size: 14px;
+  color: var(--craft-text-muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.company-meta-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--craft-text-muted);
+  margin-top: 12px;
+}
+
+.company-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.company-actions-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--craft-cyan) 0%, var(--craft-blue) 100%);
+  color: #030712;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--craft-cyan);
+  color: var(--craft-cyan);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 245, 212, 0.05);
+}
+
+/* Abas internas do LinkedIn */
+.company-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--craft-border);
+  padding: 0 16px;
+  background: #0a0f1d;
+}
+
+.company-tab {
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--craft-text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.company-tab.active {
+  color: var(--craft-cyan);
+}
+
+.company-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--craft-cyan);
+  box-shadow: 0 -2px 10px var(--craft-cyan);
+}
+
+/* Área de vagas (Jobs Section) */
+.jobs-tab-content {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  flex: 1;
+}
+
+.jobs-list-side {
+  flex: 1.2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.jobs-detail-side {
+  flex: 1.5;
+  background: #0c1222;
+  border: 1px solid var(--craft-border);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  position: sticky;
+  top: 68px;
+  height: fit-content;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.jobs-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--craft-text-white);
+  margin-bottom: 4px;
+}
+
+.jobs-section-subtitle {
+  font-size: 11px;
+  color: var(--craft-text-muted);
+  margin-bottom: 14px;
+}
+
+/* Cartões de Vaga (Job Cards) */
+.job-card {
+  background: #0c1222;
+  border: 1px solid var(--craft-border);
+  border-radius: 8px;
+  padding: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.job-card.active {
+  border-color: var(--craft-cyan);
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.1);
+  background: #0e172a;
+}
+
+.job-card.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--craft-cyan);
+}
+
+.job-card-header {
+  display: flex;
+  gap: 12px;
+}
+
+.job-company-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--craft-bg-darker);
+  border-radius: 6px;
+  border: 1px solid var(--craft-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.job-card-info {
+  flex: 1;
+}
+
+.job-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--craft-text-white);
+}
+
+.job-company-name {
+  font-size: 12px;
+  color: var(--craft-cyan);
+  margin-top: 2px;
+}
+
+.job-details-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--craft-text-muted);
+  margin-top: 8px;
+}
+
+.job-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.job-card-tags {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.job-tag {
+  font-size: 9px;
+  font-weight: 600;
+  background: var(--craft-bg-hover);
+  color: var(--craft-text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.job-tag.cyan {
+  background: rgba(0, 245, 212, 0.1);
+  color: var(--craft-cyan);
+}
+
+/* Detalhes da Vaga Expandida */
+.job-detail-header {
+  border-bottom: 1px solid var(--craft-border);
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.job-detail-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.job-detail-sub {
+  font-size: 12px;
+  color: var(--craft-text-muted);
+  margin-top: 4px;
+}
+
+.job-detail-apply-row {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.job-detail-body h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--craft-cyan);
+  margin: 14px 0 6px 0;
+}
+
+.job-detail-body p, .job-detail-body ul {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--craft-text-muted);
+  margin-bottom: 10px;
+}
+
+.job-detail-body ul {
+  padding-left: 16px;
+}
+
+.job-detail-body li {
+  margin-bottom: 4px;
+}
+
+/* --- VIRTUAL CURSOR (MOUSE SIMULADO) --- */
+.virtual-cursor {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 9999;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+.virtual-cursor-ripple {
+  position: absolute;
+  border: 2px solid var(--craft-cyan);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transform: translate(-10px, -10px);
+  opacity: 0;
+}
+
+@keyframes mouse-ripple {
+  0% { transform: scale(0.2) translate(-50%, -50%); opacity: 1; }
+  100% { transform: scale(1) translate(-50%, -50%); opacity: 0; }
+}
+
+.virtual-cursor-ripple.clicking {
+  animation: mouse-ripple 0.4s ease-out;
+}
+
+/* --- PAINÉIS DE EXPLICAÇÃO / TOOLTIPS --- */
+.tooltip-bubble {
+  position: absolute;
+  background: rgba(18, 26, 46, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--craft-cyan);
+  box-shadow: 
+    0 10px 30px rgba(0,0,0,0.6),
+    0 0 15px rgba(0, 245, 212, 0.15);
+  padding: 14px 18px;
+  border-radius: 12px;
+  max-width: 280px;
+  z-index: 500;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.tooltip-title {
+  font-weight: 700;
+  color: var(--craft-cyan);
+  margin-bottom: 6px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tooltip-text {
+  color: #d1d5db;
+}
+
+/* --- TELA FINAL DE CALL TO ACTION --- */
+.cta-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 8, 17, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 600;
+  padding: 40px;
+  text-align: center;
+}
+
+.cta-box {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-logo-glow {
+  width: 80px;
+  height: 80px;
+  background: var(--craft-bg-card);
+  border-radius: 16px;
+  border: 2px solid var(--craft-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  box-shadow: 
+    0 0 30px rgba(0, 245, 212, 0.2),
+    inset 0 0 15px rgba(0, 245, 212, 0.1);
+}
+
+.cta-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.cta-subtitle {
+  font-size: 15px;
+  color: var(--craft-text-muted);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+
+.cta-button-group {
+  margin-top: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+/* --- PAINEL DE CONTROLE (PLAYER LINHA DO TEMPO) --- */
+.player-control-panel {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 48px);
+  max-width: 900px;
+  background: rgba(10, 15, 29, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--craft-border);
+  border-radius: 16px;
+  padding: 16px 24px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity 0.3s;
+}
+
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.player-time-display {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--craft-text-muted);
+  min-width: 35px;
+}
+
+.player-scrollbar-wrapper {
+  flex: 1;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.player-scrollbar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.player-scrollbar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--craft-cyan), var(--craft-blue));
+  border-radius: 3px;
+}
+
+.player-scrollbar-handle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--craft-cyan);
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Marcadores de fase na linha do tempo */
+.player-phase-markers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.player-phase-marker {
+  position: absolute;
+  width: 4px;
+  height: 6px;
+  background: #000;
+  opacity: 0.5;
+  top: 7px; /* Centralizado verticalmente na barra de 6px */
+  border-radius: 1px;
+}
+
+.player-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player-buttons-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.1s;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.player-btn:hover {
+  color: var(--craft-cyan);
+  background: rgba(255,255,255,0.05);
+}
+
+.player-btn:active {
+  transform: scale(0.95);
+}
+
+.player-btn.active {
+  color: var(--craft-cyan);
+}
+
+.player-btn-play {
+  width: 36px;
+  height: 36px;
+  background: var(--craft-cyan);
+  color: #000;
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--craft-cyan-glow);
+}
+
+.player-btn-play:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.05);
+}
+
+.player-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--craft-cyan);
+  background: rgba(0, 245, 212, 0.1);
+  padding: 4px 10px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.player-buttons-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.player-device-selectors {
+  display: flex;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 2px;
+  border: 1px solid var(--craft-border);
+}
+
+.player-device-btn {
+  background: transparent;
+  border: none;
+  color: var(--craft-text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.player-device-btn.active {
+  background: var(--craft-bg-hover);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.player-speed-selector {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--craft-border);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.player-speed-selector option {
+  background: var(--craft-bg-dark);
+  color: #fff;
+}
+
+/* Telas flutuantes de vaga orbitando na fase final */
+.floating-job-cards-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.floating-job-card {
+  position: absolute;
+  background: rgba(18, 26, 46, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+  width: 220px;
+  pointer-events: auto;
+}
+
+.floating-job-card.card-1 {
+  top: 25%;
+  left: 10%;
+}
+
+.floating-job-card.card-2 {
+  top: 60%;
+  left: 8%;
+}
+
+.floating-job-card.card-3 {
+  top: 20%;
+  right: 10%;
+}
+
+.floating-job-card.card-4 {
+  top: 65%;
+  right: 8%;
+}
+
+.floating-job-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.floating-job-card-subtitle {
+  font-size: 10px;
+  color: var(--craft-cyan);
+  margin-top: 2px;
+}
+
+.floating-job-card-badge {
+  font-size: 9px;
+  display: inline-block;
+  background: rgba(255,255,255,0.05);
+  color: var(--craft-text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+/* Overlay de boas-vindas / Play Inicial */
+.intro-play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 8, 17, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  text-align: center;
+  padding: 24px;
+}
+
+.intro-play-box {
+  max-width: 460px;
+  background: rgba(18, 26, 46, 0.6);
+  border: 1px solid rgba(0, 245, 212, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 
+    0 30px 60px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.intro-play-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--craft-cyan) 0%, var(--craft-blue) 100%);
+  border: none;
+  color: #030712;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  margin: 0 auto 24px auto;
+  box-shadow: 
+    0 0 30px var(--craft-cyan-glow),
+    0 8px 20px rgba(0, 245, 212, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.intro-play-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 
+    0 0 40px var(--craft-cyan-glow),
+    0 12px 25px rgba(0, 245, 212, 0.4);
+}
+
+.intro-play-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fff;
+}
+
+.intro-play-desc {
+  font-size: 13px;
+  color: var(--craft-text-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Responsivo para celular */
+@media (max-width: 900px) {
+  .laptop-frame {
+    transform: scale(0.6) !important;
+  }
+  .phone-frame {
+    transform: scale(0.8) !important;
+  }
+  .player-control-panel {
+    width: calc(100% - 24px);
+    padding: 10px 16px;
+  }
+  .player-controls-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+}

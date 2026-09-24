@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X, ArrowRight, MessageCircle, Calendar, Shield, MapPin, Mail, Instagram } from 'lucide-react';
+import { Menu, X, ArrowRight, MessageCircle, Calendar, Shield, MapPin, Mail, Instagram, Brain, FileText, UserCheck } from 'lucide-react';
 
 // Importação das imagens geradas de alta qualidade
 // @ts-ignore
@@ -86,10 +86,11 @@ export default function PsicologiaLanding() {
 
           {/* Links Desktop */}
           <div className="psi-nav-links">
-            <a href="#inicio">Home</a>
-            <a href="#sobre">Sobre mim</a>
-            <a href="#como-funciona">Sessões</a>
-            <a href="#contato">Agendamentos</a>
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre Mim</a>
+            <a href="#como-funciona">Psicoterapia</a>
+            <a href="#neuroavaliacao" className="psi-nav-highlight">Neuroavaliação</a>
+            <a href="#contato">Contato</a>
           </div>
 
           <a 
@@ -118,10 +119,13 @@ export default function PsicologiaLanding() {
           animate={{ opacity: 1, y: 0 }}
           className="psi-mobile-menu"
         >
-          <a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Home</a>
-          <a href="#sobre" onClick={() => setMobileMenuOpen(false)}>Sobre mim</a>
-          <a href="#como-funciona" onClick={() => setMobileMenuOpen(false)}>Sessões</a>
-          <a href="#contato" onClick={() => setMobileMenuOpen(false)}>Agendamentos</a>
+          <a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Início</a>
+          <a href="#sobre" onClick={() => setMobileMenuOpen(false)}>Sobre Mim</a>
+          <a href="#como-funciona" onClick={() => setMobileMenuOpen(false)}>Psicoterapia</a>
+          <a href="#neuroavaliacao" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--psi-primary)', fontWeight: 600 }}>
+            Neuroavaliação ✨
+          </a>
+          <a href="#contato" onClick={() => setMobileMenuOpen(false)}>Contato</a>
           <a 
             href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta." 
             target="_blank" 
@@ -266,6 +270,117 @@ export default function PsicologiaLanding() {
         </div>
       </section>
 
+      {/* ===== SEÇÃO DE NEUROAVALIAÇÃO ===== */}
+      <section id="neuroavaliacao" className="psi-neuro-section">
+        <div className="container">
+          <div className="psi-neuro-header">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="psi-neuro-title psi-text-serif-italic"
+            >
+              Avaliação Neuropsicológica
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="psi-neuro-subtitle"
+            >
+              Investigação clínica detalhada e emissão de laudo técnico para crianças e adultos.
+            </motion.p>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="psi-neuro-text-box"
+          >
+            <p className="psi-neuro-support-text">
+              "A avaliação neuropsicológica investiga o funcionamento de funções cognitivas como atenção, memória, funções executivas e regulação emocional. É um processo com início, meio e fim, indicado para esclarecimento diagnóstico de TDAH, Autismo (TEA), dificuldades de aprendizagem ou alterações cognitivas, oferecendo direcionamento claro para médicos, escolas e a própria família."
+            </p>
+          </motion.div>
+
+          <div className="psi-neuro-cards-grid">
+            {/* Card 1 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="psi-neuro-card"
+            >
+              <div className="psi-neuro-card-icon">
+                <Brain size={28} />
+              </div>
+              <h3 className="psi-neuro-card-title">Investigação Estruturada</h3>
+              <p className="psi-neuro-card-text">
+                Testes padronizados validados pelo Conselho Federal de Psicologia (SATEPSI).
+              </p>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="psi-neuro-card"
+            >
+              <div className="psi-neuro-card-icon">
+                <FileText size={28} />
+              </div>
+              <h3 className="psi-neuro-card-title">Laudo Conclusivo</h3>
+              <p className="psi-neuro-card-text">
+                Documento técnico completo com perfil cognitivo e recomendações clínicas/escolares.
+              </p>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="psi-neuro-card"
+            >
+              <div className="psi-neuro-card-icon">
+                <UserCheck size={28} />
+              </div>
+              <h3 className="psi-neuro-card-title">Crianças & Adultos</h3>
+              <p className="psi-neuro-card-text">
+                Protocolos individualizados conforme a fase de vida e a queixa principal.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            style={{ textAlign: 'center', marginTop: '3.5rem' }}
+          >
+            <a 
+              href="https://wa.me/5521968892975?text=Olá!%20Gostaria%20de%20entender%20melhor%20como%20funciona%20a%20avaliação%20neuropsicológica%20e%20a%20disponibilidade%20de%20datas." 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="psi-btn psi-btn-glass"
+              onClick={() => trackConversion('click_whatsapp_neuro', 'Neuroavaliação CTA')}
+            >
+              <MessageCircle size={18} />
+              Tirar dúvidas sobre Neuroavaliação via WhatsApp
+              <div className="psi-btn-bg"></div>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
       {/* ===== SEÇÃO "SOBRE MIM" ===== */}
       <section id="sobre" className="psi-about-section">
         <div className="container">
@@ -329,14 +444,14 @@ export default function PsicologiaLanding() {
                 <h2 className="psi-cta-title psi-text-serif-italic" style={{ color: '#FFFFFF', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>
                   Dê o primeiro passo rumo ao seu espaço.
                 </h2>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
-                  Entre em contato para tirar dúvidas, compreender os formatos de atendimento ou agendar a sua primeira sessão com tranquilidade.
+                <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '1.05rem', lineHeight: '1.6', marginBottom: '2.5rem' }}>
+                  Entre em contato para tirar dúvidas, compreender os formatos de atendimento ou agendar a sua consulta com tranquilidade.
                 </p>
 
                 {/* Informações Práticas de Contato */}
                 <div className="psi-contact-list">
                   <div className="psi-contact-item">
-                    <MapPin size={20} color="var(--psi-accent)" />
+                    <MapPin size={20} color="#FFFFFF" />
                     <div>
                       <strong style={{ color: '#FFFFFF' }}>Atendimento Online</strong>
                       <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>Para todo o Brasil e brasileiros no exterior</p>
@@ -344,7 +459,7 @@ export default function PsicologiaLanding() {
                   </div>
 
                   <div className="psi-contact-item">
-                    <MapPin size={20} color="var(--psi-accent)" />
+                    <MapPin size={20} color="#FFFFFF" />
                     <div>
                       <strong style={{ color: '#FFFFFF' }}>Localização Local</strong>
                       <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>Niterói – Rio de Janeiro | Google Business</p>
@@ -352,7 +467,7 @@ export default function PsicologiaLanding() {
                   </div>
 
                   <div className="psi-contact-item">
-                    <Mail size={20} color="var(--psi-accent)" />
+                    <Mail size={20} color="#FFFFFF" />
                     <div>
                       <strong style={{ color: '#FFFFFF' }}>E-mail</strong>
                       <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>psicomstefane@gmail.com</p>
@@ -362,41 +477,49 @@ export default function PsicologiaLanding() {
               </div>
             </div>
 
-            {/* Formulário de Lead Integrado */}
+            {/* Painel de Contato Direto via WhatsApp (Outline Branco + 1 Botão Único) */}
             <div className="psi-cta-form-container">
-              <h3 className="psi-form-title">Enviar Mensagem</h3>
-              <form className="psi-cta-form" onSubmit={(e) => {
-                e.preventDefault();
-                // Ação de envio do formulário: abre o WhatsApp com a mensagem estruturada
-                const form = e.target as HTMLFormElement;
-                const name = (form.elements.namedItem('name') as HTMLInputElement).value;
-                const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
-                
-                trackConversion('submit_contact_form', `Form submitted by ${name}`);
-
-                const whatsappUrl = `https://wa.me/5521968892975?text=Olá,%20Stefane!%20Meu%20nome%20é%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
-                window.open(whatsappUrl, '_blank');
-              }}>
-                <div className="psi-input-group">
-                  <label className="psi-input-label" htmlFor="name">Seu Nome</label>
-                  <input type="text" id="name" name="name" required placeholder="Como prefere ser chamado?" className="psi-input" />
+              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div style={{ 
+                  width: '64px', 
+                  height: '64px', 
+                  borderRadius: '50%', 
+                  background: 'rgba(255, 255, 255, 0.12)', 
+                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  color: '#FFFFFF', 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  marginBottom: '1.25rem'
+                }}>
+                  <MessageCircle size={32} />
                 </div>
+                <h3 className="psi-form-title">Contato Direto via WhatsApp</h3>
+                <p style={{ fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.85)', lineHeight: '1.6', marginTop: '0.5rem' }}>
+                  Fale diretamente com a Dra. Stéfane Mercês para tirar dúvidas ou agendar o seu atendimento.
+                </p>
+              </div>
 
-                <div className="psi-input-group">
-                  <label className="psi-input-label" htmlFor="email">Seu E-mail</label>
-                  <input type="email" id="email" name="email" required placeholder="Ex: nome@dominio.com" className="psi-input" />
-                </div>
+              <div style={{ marginTop: '2rem' }}>
+                {/* Botão Único do WhatsApp */}
+                <a 
+                  href="https://wa.me/5521968892975?text=Olá,%20Stefane!%20Gostaria%20de%20agendar%20uma%20consulta."
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="psi-whatsapp-single-btn"
+                  onClick={() => trackConversion('click_whatsapp_single_contact', 'Contact Section - Single WhatsApp Button')}
+                >
+                  <MessageCircle size={24} />
+                  <span>Falar no WhatsApp</span>
+                  <ArrowRight size={20} />
+                </a>
+              </div>
 
-                <div className="psi-input-group">
-                  <label className="psi-input-label" htmlFor="message">Como posso te ajudar?</label>
-                  <textarea id="message" name="message" rows={4} required placeholder="Fale brevemente sobre o que te traz à terapia..." className="psi-input" style={{ resize: 'none' }}></textarea>
-                </div>
-
-                <button type="submit" className="psi-btn psi-btn-accent" style={{ width: '100%', marginTop: '1rem', padding: '1rem' }}>
-                  Agende a sua consulta <ArrowRight size={18} />
-                  <div className="psi-btn-bg"></div>
-                </button>
-              </form>
+              <div style={{ marginTop: '2.2rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.15)', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.82rem', color: 'rgba(255, 255, 255, 0.75)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+                  <Shield size={15} color="#FFFFFF" /> Atendimento individualizado, ético e sigiloso
+                </p>
+              </div>
             </div>
 
           </div>
@@ -417,10 +540,11 @@ export default function PsicologiaLanding() {
             <div className="psi-footer-links">
               <div className="psi-footer-column">
                 <span className="psi-footer-column-title">Navegação</span>
-                <a href="#inicio">Home</a>
-                <a href="#sobre">Sobre mim</a>
-                <a href="#como-funciona">Sessões</a>
-                <a href="#contato">Agendamentos</a>
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre Mim</a>
+                <a href="#como-funciona">Psicoterapia</a>
+                <a href="#neuroavaliacao">Neuroavaliação</a>
+                <a href="#contato">Contato</a>
               </div>
 
               <div className="psi-footer-column">
@@ -446,6 +570,28 @@ export default function PsicologiaLanding() {
           </div>
         </div>
       </footer>
+
+      {/* ===== BOTÃO FLUTUANTE DE WHATSAPP ===== */}
+      <motion.a
+        href="https://wa.me/5521968892975?text=Olá!%20Gostaria%20de%20tirar%20uma%20dúvida%20sobre%20os%20atendimentos%20da%20Stefane."
+        target="_blank"
+        rel="noopener noreferrer"
+        className="psi-floating-whatsapp"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 1, type: 'spring', stiffness: 260, damping: 20 }}
+        onClick={() => trackConversion('click_whatsapp_floating', 'Floating WhatsApp Button')}
+        title="Falar no WhatsApp"
+        aria-label="Falar no WhatsApp"
+      >
+        <div className="psi-floating-whatsapp-tooltip">
+          Fale diretamente comigo
+        </div>
+        <div className="psi-floating-whatsapp-icon">
+          <MessageCircle size={26} />
+        </div>
+        <span className="psi-floating-whatsapp-ping"></span>
+      </motion.a>
     </div>
   );
 }
