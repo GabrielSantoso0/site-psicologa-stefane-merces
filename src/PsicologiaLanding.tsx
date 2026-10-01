@@ -410,7 +410,7 @@ export default function PsicologiaLanding() {
               </h2>
 
               <p className="psi-about-paragraph">
-                Sou psicóloga formada, com especialização em Psicologia Baseada em Evidências, atuando com um olhar acolhedor, ético e individualizado para cada pessoa.
+                Sou psicóloga, com especialização em Psicoterapias Baseadas em Evidências com ênfase na Terapia Cognitivo-Comportamental, atuando com um olhar acolhedor, ético e individualizado para cada pessoa.
               </p>
               
               <p className="psi-about-paragraph">
