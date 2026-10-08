@@ -6,7 +6,7 @@ import { Menu, X, ArrowRight, MessageCircle, Calendar, Shield, MapPin, Mail, Ins
 // @ts-ignore
 import heroBg from './mude_o_formato_2K_202605151955.jpeg';
 // @ts-ignore
-import portraitImg from './magnific_fotografia-editorial-cine_3GkSpvQREY.png';
+import portraitImg from './stefane_portrait.jpg';
 // @ts-ignore
 import logoImg from './Ativo 1.png';
 // @ts-ignore
